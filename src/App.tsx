@@ -1,13 +1,11 @@
-import React from 'react'
-import { Counter } from './components/Counter'
-import './App.css'
+import Index from './routes';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <Counter />
+    <div>
+      <Index/>
     </div>
   )
 }
 
-export default App
+export default App;

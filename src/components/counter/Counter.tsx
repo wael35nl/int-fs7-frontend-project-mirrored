@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
-import { useAppSelector, useAppDispatch } from '../app/hooks'
+import { useAppSelector, useAppDispatch } from '../../app/hooks'
 import {
   decrement,
   increment,
   incrementByAmount,
   selectCount,
-} from '../redux/counter/counterSlice'
+} from '../../features/counter/counterSlice'
 
 export function Counter() {
   const count = useAppSelector(selectCount)
