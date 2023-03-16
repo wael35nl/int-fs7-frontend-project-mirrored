@@ -25,5 +25,8 @@ export interface FlagsT {
 }
 
 export interface CountriesState {
-    countries: CountriesT[]
+    countries: CountriesT[];
+    isLoading: boolean;
+    error:     boolean;
+    message:   string;
 }

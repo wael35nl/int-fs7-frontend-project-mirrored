@@ -4,28 +4,65 @@
     box-sizing: border-box;
     list-style: none;
     text-decoration: none;
+    font-family: 'Nunito', sans-serif
 }
 
-.nav__links, .footer {
+.navbar, .footer {
     display: flex;
     justify-content: space-around;
     height: 3rem;
     align-items: center;
     background-color: rgb(13,82,186);
     font-size: 2rem;
-}
-
-.nav__links a {
+    padding: 1em;
+    padding-top: 1.2em;
     color: white;
 }
 
+.navbar h4 {
+    display: flex;
+    gap: 0.7rem;
+}
+
+.navbar a {
+    color: white;
+}
+
+.nav__search {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem 0;
+    padding: 0 0.5em;
+}
+
+.nav__search input, .nav__search button {
+    height: 2rem;
+    border-radius: 15px;
+    text-indent: 0.4rem;
+    padding-right: 0.5em;
+    font-size: 1.2rem;
+}
+
+.nav__links {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    gap: 2.5rem;
+}
+
 main {
-    min-height: 87.9vh;
+    min-height: 84.8vh;
 }
 
 .page__title {
     text-align: center;
     margin: 1rem 0;
+}
+
+.lorem {
+    padding: 1em;
+    line-height: 2rem;
 }
 
 .countries__table {
@@ -50,4 +87,16 @@ td {
 img {
     width: 6rem;
     height: 4rem;
+}
+
+svg {
+    width: 3rem;
+}
+
+.is-favorite {
+    color: rgb(255, 0, 183);
+}
+
+.not-favorite {
+    color: rgb(13,82,186);
 }

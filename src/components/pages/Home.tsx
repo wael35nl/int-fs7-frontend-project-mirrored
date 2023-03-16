@@ -1,4 +1,4 @@
-import Countries from '../../features/countries/Countries';
+import Countries from '../countries/Countries';
 
 const Home = () => {
   return (

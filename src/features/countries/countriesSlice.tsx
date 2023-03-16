@@ -6,6 +6,9 @@ import { CountriesState, CountriesT } from '../../types/Countries';
 
 const initialState: CountriesState = {
     countries: [],
+    isLoading: false,
+    error: false,
+    message: ''
 }
 
 export const getAllCountries = createAsyncThunk(
@@ -19,13 +22,24 @@ export const getAllCountries = createAsyncThunk(
 export const countriesSlice = createSlice({
     name: 'countries',
     initialState,
-    reducers: {},
+    reducers: {
+        search: (state, action) => {
+            state.countries = state.countries.filter(country => country.name.common.toLowerCase().includes(action.payload.toLowerCase()));
+        }
+    },
     extraReducers: builder => {
+        // builder.addCase(getAllCountries.pending, (state, action) => {
+        //     state.countries = action.payload;
+        // });
         builder.addCase(getAllCountries.fulfilled, (state, action) => {
             state.countries = action.payload;
-        })
+        });
+        // builder.addCase(getAllCountries.rejected, (state, action) => {
+        //     state.countries = action.payload;
+        // });
     }
 });
 
+export const {search} = countriesSlice.actions;
 export const selectCountries = (state: RootState) => state.countriesR;
 export default countriesSlice.reducer;
