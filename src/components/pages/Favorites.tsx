@@ -1,6 +1,10 @@
+import FavoriteCountries from "../countries/FavoriteCountries";
+
 const Favorites = () => {
   return (
-    <div>Favorites</div>
+    <div>
+      <FavoriteCountries/>
+    </div>
   );
 }
 
