@@ -17,7 +17,7 @@ const Country = ({countries}: TodoProps) => {
   const [favoriteObject, setFavoriteObject] = useState('');
 
   const handleFavorite = (name: string) => {
-    if (!favoriteObject.includes(name)) setFavoriteObject(previous => previous += name);
+    if (!favoriteObject.includes(name)) setFavoriteObject(previous => previous = previous + ',' + name);
     else setFavoriteObject(previous => previous.replace(name, ''));
     dispatch(favorite(name));
   }
