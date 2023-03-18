@@ -1,26 +1,26 @@
 export interface CountriesT {
-    name:         NameT;
-    region:       string;
-    languages:   { [key: string]: string };
-    flag:         string;
-    population:   number;
-    flags:        FlagsT;
+    name: NameT;
+    region: string;
+    languages: { [key: string]: string };
+    flag: string;
+    population: number;
+    flags: FlagsT;
 }
 
 export interface NameT {
-    common:      string;
-    official:    string;
+    common: string;
+    official: string;
     nativeName?: { [key: string]: TranslationT };
 }
 
 export interface TranslationT {
     official: string;
-    common:   string;
+    common: string;
 }
 
 export interface FlagsT {
-    png:  string;
-    svg:  string;
+    png: string;
+    svg: string;
     alt?: string;
 }
 
@@ -28,7 +28,8 @@ export interface CountriesState {
     countries: CountriesT[];
     favoriteCountries: CountriesT[];
     isFavorite: boolean;
+    favorites: string[];
     isLoading: boolean;
-    error:     boolean;
-    message:   string;
+    error: boolean;
+    message: string;
 }

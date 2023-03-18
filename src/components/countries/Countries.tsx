@@ -38,7 +38,7 @@ const Countries = () => {
                     <th></th>
                 </tr>
             </thead>
-            <Country countries={countries} />
+            <Country countries={countries}/>
         </table>
     </>);
 }

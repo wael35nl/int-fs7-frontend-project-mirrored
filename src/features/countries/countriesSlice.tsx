@@ -7,6 +7,7 @@ import { CountriesState, CountriesT } from '../../types/Countries';
 const initialState: CountriesState = {
     countries: [],
     favoriteCountries: [],
+    favorites: [],
     isFavorite: false,
     isLoading: false,
     error: false,
@@ -46,6 +47,14 @@ export const countriesSlice = createSlice({
                     state.favoriteCountries.push(country);
                 }
             });
+        },
+        setFavorites : (state, action) => {
+            if (!state.favorites.includes(action.payload)) {
+                state.favorites.push(action.payload);
+              }
+              else {
+                state.favorites = state.favorites.filter(name => name !== action.payload);
+              }
         }
     },
     extraReducers: builder => {
@@ -61,6 +70,6 @@ export const countriesSlice = createSlice({
     }
 });
 
-export const {search, favorite} = countriesSlice.actions;
+export const {search, favorite, setFavorites} = countriesSlice.actions;
 export const selectCountries = (state: RootState) => state.countriesR;
 export default countriesSlice.reducer;

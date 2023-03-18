@@ -1,27 +1,23 @@
-import {useState} from 'react';
 import { v4 as uuidv4} from 'uuid';
 import { Link } from 'react-router-dom';
 import { FaHeart, FaAngleRight } from 'react-icons/fa';
 
-import { useAppDispatch } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { CountriesT } from '../../types/Countries';
-import { favorite } from '../../features/countries/countriesSlice';
+import { favorite, setFavorites, selectCountries } from '../../features/countries/countriesSlice';
 
-type TodoProps = {
+type CountryProps = {
   countries: CountriesT[]
 }
 
-const Country = ({countries}: TodoProps) => {
+const Country = ({countries}: CountryProps) => {
+  const {favorites} = useAppSelector(selectCountries);
   const dispatch = useAppDispatch();
 
-  const [favoriteObject, setFavoriteObject] = useState('');
-
   const handleFavorite = (name: string) => {
-    if (!favoriteObject.includes(name)) setFavoriteObject(previous => previous = previous + ',' + name);
-    else setFavoriteObject(previous => previous.replace(name, ''));
+    dispatch(setFavorites(name))
     dispatch(favorite(name));
   }
-
   const country = countries.map((country, index) =>
     {
       const name = country.name.common;
@@ -37,11 +33,11 @@ const Country = ({countries}: TodoProps) => {
                 <ul>
                   {
                     languages !== null && languages !== undefined ?
-                    Object.keys(languages).map(language => <li key={uuidv4()}># {language}</li>) : ''
+                    Object.values(languages).map(language => <li key={uuidv4()}># {language}</li>) : ''
                   }
                 </ul>
             </td>
-            <td onClick={() => {handleFavorite(name)}}><FaHeart className={favoriteObject.includes(name) ? 'is-favorite' : 'not-favorite'}/></td>
+            <td onClick={() => {handleFavorite(name)}}><FaHeart className={favorites.includes(name) ? 'is-favorite' : 'not-favorite'}/></td>
             <td><Link to={name} state={{region, population}}><FaAngleRight /></Link></td>
         </tr>
   </tbody>
