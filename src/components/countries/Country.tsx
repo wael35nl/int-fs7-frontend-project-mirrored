@@ -25,7 +25,7 @@ const Country = ({countries}: CountryProps) => {
       return (
         <tbody key={index}>
         <tr>
-            <td><img src={flags.png} alt='country flag'/></td>
+            <td><img src={flags.png} alt={flags.alt}/></td>
             <td>{name}</td>
             <td>{region}</td>
             <td>{population}</td>
@@ -38,7 +38,7 @@ const Country = ({countries}: CountryProps) => {
                 </ul>
             </td>
             <td onClick={() => {handleFavorite(name)}}><FaHeart className={favorites.includes(name) ? 'is-favorite' : 'not-favorite'}/></td>
-            <td><Link to={name} state={{region, population}}><FaAngleRight /></Link></td>
+            <td><Link to={name} state={country}><FaAngleRight /></Link></td>
         </tr>
   </tbody>
       );
