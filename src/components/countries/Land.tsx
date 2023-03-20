@@ -38,9 +38,12 @@ const Land = () => {
             <p> &nbsp; - Car driving side: {car.side}</p>
           </div>
 
-          <div style={{display: 'grid', placeItems: 'center'}}>
-            <img style={{width: '30rem', height: '15rem'}} src={state.coatOfArms.svg} alt={state.flags.alt} />
-          </div>
+          {
+            state.coatOfArms.svg &&
+            <div style={{display: 'grid', placeItems: 'center'}}>
+              <img style={{width: '30rem', height: '15rem'}} src={state.coatOfArms.svg} alt={state.flags.alt} />
+            </div>
+          }
 
         </div>
       </div>
