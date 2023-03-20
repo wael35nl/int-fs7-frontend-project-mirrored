@@ -197,6 +197,6 @@ export interface CountriesState {
     isFavorite: boolean;
     favorites: string[];
     isLoading: boolean;
-    error: boolean;
+    isError: boolean;
     message: string;
 }

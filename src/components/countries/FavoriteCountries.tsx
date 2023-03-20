@@ -40,27 +40,9 @@ const FavoriteCountries = () => {
       );
     });
   return (
-        <>
-          {
-          favoriteCountries.length === 0 ?
-          <h2 className='page__title'>Add favorites..</h2>
-          :
-          <table className='countries__table'>
-            <thead>
-              <tr>
-                <th>Flag</th>
-                <th>Name</th>
-                <th>Region</th>
-                <th>Population</th>
-                <th>Languages</th>
-                <th></th>
-                <th></th>
-              </tr>
-            </thead>
-            {country}
-          </table>
-          }
-        </>
+    <>
+      {country}
+    </>
   );
 }
 

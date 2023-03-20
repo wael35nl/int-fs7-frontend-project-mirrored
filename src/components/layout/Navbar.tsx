@@ -4,34 +4,41 @@ import { FaBars, FaHome, FaGlobeAmericas, FaHeart, FaToggleOn } from 'react-icon
 
 import { useAppDispatch } from '../../app/hooks';
 import { region } from '../../features/countries/countriesSlice';
+import { getAllCountries } from '../../services';
 
 const Navbar = () => {
   const dispatch = useAppDispatch();
-  const [showList, setShow] = useState(false);
+  const [showList, setShowList] = useState(false);
+
+  const handleRegionSearch = (regionName: string) => {
+    dispatch(region(regionName));
+    setShowList(!showList);
+  }
 
   return (
     <nav className='navbar'>
       <div style={{display: 'flex', gap: '1rem'}}>
         <div>
           <FaBars onClick={() => {
-            !showList ? setShow(true) : setShow(false);
+            !showList ? setShowList(!showList) : setShowList(!showList);
           }}/>
           {showList &&
             <div style={{position: 'fixed', top: '4.3rem', left: '0.5rem', border: '2px solid black', backgroundColor: 'white', color: 'black', padding: '0.5em', display: 'flex', flexDirection: 'column', gap: '1rem'}}>
-              <p onClick={() => {dispatch(region('Americas')); setShow(false)}}>America</p>
-              <p onClick={() => {dispatch(region('Europe')); setShow(false)}}>Europe</p>
-              <p onClick={() => {dispatch(region('Asia')); setShow(false)}}>Asia</p>
-              <p onClick={() => {dispatch(region('Africa')); setShow(false)}}>Africa</p>
-              <p onClick={() => {dispatch(region('Oceania')); setShow(false)}}>Oceania</p>
-              <p onClick={() => {dispatch(region('Antarctic')); setShow(false)}}>Antarctica</p>
+              <p onClick={() => {dispatch(getAllCountries()); setShowList(!showList)}}>All</p>
+              <p onClick={() => handleRegionSearch('Americas')}>America</p>
+              <p onClick={() => handleRegionSearch('Europe')}>Europe</p>
+              <p onClick={() => handleRegionSearch('Asia')}>Asia</p>
+              <p onClick={() => handleRegionSearch('Africa')}>Africa</p>
+              <p onClick={() => handleRegionSearch('Oceania')}>Oceania</p>
+              <p onClick={() => handleRegionSearch('Antarctic')}>Antarctica</p>
             </div>
           }
         </div>
-        <h4>Region</h4>
+        <h4>Regions</h4>
       </div>
       <ul className='nav__links'>
         <li><NavLink to='/'><FaHome/></NavLink></li>
-        <li><NavLink to='/about'><FaGlobeAmericas /></NavLink></li>
+        <li><NavLink to='/CountriesPage'><FaGlobeAmericas /></NavLink></li>
         <li><NavLink to='/favorite'><FaHeart /></NavLink></li>
         <li><NavLink to='/'><FaToggleOn /></NavLink></li>
       </ul>

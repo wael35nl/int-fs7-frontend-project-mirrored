@@ -1,8 +1,8 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice } from '@reduxjs/toolkit';
 
 import { RootState } from '../../app/store';
-import { CountriesState, CountriesT } from '../../types/Countries';
+import { getAllCountries } from '../../services';
+import { CountriesState } from '../../types/Countries';
 
 const initialState: CountriesState = {
     countries: [],
@@ -10,17 +10,9 @@ const initialState: CountriesState = {
     favorites: [],
     isFavorite: false,
     isLoading: false,
-    error: false,
+    isError: false,
     message: ''
 }
-
-export const getAllCountries = createAsyncThunk(
-    'countries/getAllCountries',
-    async () => {
-            const response = await axios.get('https://restcountries.com/v3.1/all');
-            const data: CountriesT[] = await response.data;
-            return data;
-});
 
 export const countriesSlice = createSlice({
     name: 'countries',
@@ -61,15 +53,20 @@ export const countriesSlice = createSlice({
         }
     },
     extraReducers: builder => {
-        // builder.addCase(getAllCountries.pending, (state, action) => {
-        //     state.countries = action.payload;
-        // });
+        builder.addCase(getAllCountries.pending, (state) => {
+            state.isLoading = true;
+            state.message = 'Loading...'
+        });
         builder.addCase(getAllCountries.fulfilled, (state, action) => {
+            state.isLoading = false;
             state.countries = action.payload;
         });
-        // builder.addCase(getAllCountries.rejected, (state, action) => {
-        //     state.countries = action.payload;
-        // });
+        builder.addCase(getAllCountries.rejected, (state) => {
+            state.isLoading = false;
+            state.isError = true;
+            state.message = 'Error...';
+            state.countries = [];
+        });
     }
 });
 

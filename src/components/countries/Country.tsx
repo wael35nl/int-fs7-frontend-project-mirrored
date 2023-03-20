@@ -32,8 +32,8 @@ const Country = ({countries}: CountryProps) => {
             <td>
                 <ul>
                   {
-                    languages !== null && languages !== undefined ?
-                    Object.values(languages).map(language => <li key={uuidv4()}># {language}</li>) : ''
+                    languages ?
+                    Object.values(languages).map(language => <li key={uuidv4()}># {language}</li>) : <li style={{color: 'red'}}>Unknown</li>
                   }
                 </ul>
             </td>
@@ -44,7 +44,9 @@ const Country = ({countries}: CountryProps) => {
       );
     });
   return (
-    <>{country}</>
+    <>
+      {country}
+    </>
   );
 }
 
