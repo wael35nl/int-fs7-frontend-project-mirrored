@@ -26,6 +26,9 @@ export const countriesSlice = createSlice({
     name: 'countries',
     initialState,
     reducers: {
+        region: (state, action) => {
+            state.countries = state.countries.filter(country => country.region === action.payload);
+        },
         search: (state, action) => {
             state.countries = state.countries.filter(country => country.name.common.toLowerCase().includes(action.payload.toLowerCase()));
         },
@@ -70,6 +73,6 @@ export const countriesSlice = createSlice({
     }
 });
 
-export const {search, favorite, setFavorites} = countriesSlice.actions;
+export const {region, search, favorite, setFavorites} = countriesSlice.actions;
 export const selectCountries = (state: RootState) => state.countriesR;
 export default countriesSlice.reducer;

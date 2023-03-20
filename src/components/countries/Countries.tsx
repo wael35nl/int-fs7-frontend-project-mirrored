@@ -21,7 +21,7 @@ const Countries = () => {
 
     return (<>
         <div className='nav__search'>
-            <input type='text' name='name' placeholder="search..." value={countryName} onChange={(e) => setCountryName(e.target.value)} autoComplete="off" />
+            <input type='text' name='name' placeholder="search country..." value={countryName} onChange={(e) => setCountryName(e.target.value)} autoComplete="off" />
             <p>Found: {countries.length}</p>
             <button onClick={() => {window.location.reload()}}>Get all</button>
             <p>250</p>
