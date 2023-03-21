@@ -6,6 +6,8 @@ import { useAppDispatch } from '../../app/hooks';
 import { region } from '../../features/countries/countriesSlice';
 import { getAllCountries } from '../../services';
 
+import style from '../../module.css/layout.module.css';
+
 const Navbar = () => {
   const dispatch = useAppDispatch();
   const [showList, setShowList] = useState(false);

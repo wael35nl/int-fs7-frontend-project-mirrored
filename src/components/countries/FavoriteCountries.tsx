@@ -29,7 +29,7 @@ const FavoriteCountries = () => {
                 <ul>
                   {
                     languages !== null && languages !== undefined ?
-                    Object.values(languages).map(language => <li key={uuidv4()}># {language}</li>) : ''
+                    Object.values(languages).map(language => <li key={uuidv4()}># {language}</li>) : <li style={{color: 'red'}}>Unknown</li>
                   }
                 </ul>
             </td>
