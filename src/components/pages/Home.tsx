@@ -8,7 +8,7 @@ const Home = () => {
   useEffect(() => {
     setInterval(() => {
       setMap(Math.floor(Math.random() * maps.length));
-  }, 25000);
+  }, 10000);
   }, [map]);
 
   return (
