@@ -61,10 +61,10 @@ export const countriesSlice = createSlice({
             state.isLoading = false;
             state.countries = action.payload;
         });
-        builder.addCase(getAllCountries.rejected, (state) => {
+        builder.addCase(getAllCountries.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
-            state.message = 'Error...';
+            state.message = action.error.message || 'Error..';
             state.countries = [];
         });
     }
