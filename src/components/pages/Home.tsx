@@ -14,10 +14,7 @@ const Home = () => {
   return (
     <iframe
       title="Europe Map"
-      src={maps[map]}
-      width="100%"
-      height="780vh"
-      loading="lazy">
+      src={maps[map]}>
     </iframe>
   );
 }

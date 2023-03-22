@@ -5,6 +5,8 @@ import { FaHeart, FaAngleRight } from 'react-icons/fa';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { favorite, selectCountries, setFavorites } from '../../features/countries/countriesSlice';
 
+import style from '../../module.css/countries.module.css';
+
 const FavoriteCountries = () => {
     const {favoriteCountries, favorites} = useAppSelector(selectCountries);
     const dispatch = useAppDispatch();
@@ -21,7 +23,7 @@ const FavoriteCountries = () => {
       return (
         <tbody key={index}>
         <tr>
-            <td><img src={flags.png} alt='country flag'/></td>
+            <td><img src={flags.png} alt={flags.alt}/></td>
             <td>{name}</td>
             <td>{region}</td>
             <td>{population}</td>
@@ -29,11 +31,11 @@ const FavoriteCountries = () => {
                 <ul>
                   {
                     languages !== null && languages !== undefined ?
-                    Object.values(languages).map(language => <li key={uuidv4()}># {language}</li>) : <li style={{color: 'red'}}>Unknown</li>
+                    Object.values(languages).map(language => <li key={uuidv4()}># {language}</li>) : <li className={style.no__info}>Unknown</li>
                   }
                 </ul>
             </td>
-            <td onClick={() => {handleFavorite(name)}}><FaHeart className={favorites.includes(name) ? 'is-favorite' : 'not-favorite'}/></td>
+            <td onClick={() => {handleFavorite(name)}}><FaHeart className={favorites.includes(name) ? style.is__favorite : style.not__favorite}/></td>
             <td><Link to={name} state={country}><FaAngleRight /></Link></td>
         </tr>
   </tbody>

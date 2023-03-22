@@ -5,6 +5,8 @@ import { getAllCountries } from '../../services';
 import { CountriesT } from '../../types/Countries';
 import Country from './Country';
 
+import style from '../../module.css/countries.module.css';
+
 type CountriesProps = {
     countries: CountriesT[]
   }
@@ -17,7 +19,7 @@ const Countries = ({countries}: CountriesProps) => {
     }, [dispatch]);
 
     return (
-        <table className='countries__table'>
+        <table className={style.countries__table}>
             <thead>
                 <tr>
                     <th>Flag</th>

@@ -2,6 +2,8 @@ import { useAppSelector } from "../../app/hooks";
 import { selectCountries } from "../../features/countries/countriesSlice";
 import FavoriteCountries from "../countries/FavoriteCountries";
 
+import style from '../../module.css/countries.module.css';
+
 const Favorites = () => {
   const {favoriteCountries} = useAppSelector(selectCountries);
   return (
@@ -9,7 +11,7 @@ const Favorites = () => {
       {
         favoriteCountries.length === 0 ?
         <h2 className='page__title'>Add favorites..</h2> :
-        <table className='countries__table'>
+        <table className={style.countries__table}>
           <thead>
             <tr>
               <th>Flag</th>

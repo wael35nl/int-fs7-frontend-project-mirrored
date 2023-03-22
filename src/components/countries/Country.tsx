@@ -6,6 +6,8 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { CountriesT } from '../../types/Countries';
 import { favorite, setFavorites, selectCountries } from '../../features/countries/countriesSlice';
 
+import style from '../../module.css/countries.module.css';
+
 type CountryProps = {
   countries: CountriesT[]
 }
@@ -33,11 +35,11 @@ const Country = ({countries}: CountryProps) => {
                 <ul>
                   {
                     languages ?
-                    Object.values(languages).map(language => <li key={uuidv4()}># {language}</li>) : <li style={{color: 'red'}}>Unknown</li>
+                    Object.values(languages).map(language => <li key={uuidv4()}># {language}</li>) : <li className={style.no__info}>Unknown</li>
                   }
                 </ul>
             </td>
-            <td onClick={() => {handleFavorite(name)}}><FaHeart className={favorites.includes(name) ? 'is-favorite' : 'not-favorite'}/></td>
+            <td onClick={() => {handleFavorite(name)}}><FaHeart className={favorites.includes(name) ? style.is__favorite : style.not__favorite}/></td>
             <td><Link to={name} state={country}><FaAngleRight /></Link></td>
         </tr>
   </tbody>

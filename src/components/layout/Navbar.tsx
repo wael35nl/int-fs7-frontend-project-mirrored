@@ -18,14 +18,13 @@ const Navbar = () => {
   }
 
   return (
-    <nav className='navbar'>
-      <div style={{display: 'flex', gap: '1rem'}}>
-        <div>
+    <nav className={style.navbar}>
+      <div className={style.navbar__drop}>
           <FaBars onClick={() => {
             !showList ? setShowList(!showList) : setShowList(!showList);
           }}/>
           {showList &&
-            <div style={{position: 'fixed', top: '4.3rem', left: '0.5rem', border: '2px solid black', backgroundColor: 'white', color: 'black', padding: '0.5em', display: 'flex', flexDirection: 'column', gap: '1rem'}}>
+            <div className={style.navbar__drop_list}>
               <p onClick={() => {dispatch(getAllCountries()); setShowList(!showList)}}>All</p>
               <p onClick={() => handleRegionSearch('Americas')}>America</p>
               <p onClick={() => handleRegionSearch('Europe')}>Europe</p>
@@ -35,10 +34,9 @@ const Navbar = () => {
               <p onClick={() => handleRegionSearch('Antarctic')}>Antarctica</p>
             </div>
           }
-        </div>
         <h4>Regions</h4>
       </div>
-      <ul className='nav__links'>
+      <ul className={style.nav__links}>
         <li><NavLink to='/'><FaHome/></NavLink></li>
         <li><NavLink to='/CountriesPage'><FaGlobeAmericas /></NavLink></li>
         <li><NavLink to='/favorite'><FaHeart /></NavLink></li>

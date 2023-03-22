@@ -5,6 +5,8 @@ import { selectCountries, search } from '../../features/countries/countriesSlice
 import { getAllCountries } from '../../services';
 import Countries from '../countries/Countries';
 
+import style from '../../module.css/countries.module.css';
+
 const CountriesPage = () => {
   const {countries, isLoading, isError, message} = useAppSelector(selectCountries);
   const dispatch = useAppDispatch();
@@ -20,17 +22,16 @@ const CountriesPage = () => {
   }, [countryName, dispatch]);
 
   return (
-    <>
+    <div className={style.countries__container}>
       {isLoading && <h2 className='page__title'>{message}</h2>}
       {isError && <h2 className='page__title'>{message}</h2>}
-      {countries.length > 0 && <div>
-        <div className='nav__search'>
-            <input type='text' name='name' placeholder="search country..." value={countryName} onChange={(e) => setCountryName(e.target.value)} autoComplete="off" />
-            <p>Found: {countries.length}</p>
-        </div>
-        <Countries countries={countries} />
+      {countries.length > 0 &&
+      <div className={style.search}>
+        <input type='text' name='name' placeholder="search country..." value={countryName} onChange={(e) => setCountryName(e.target.value)} autoComplete="off" />
+        <p>Found: {countries.length}</p>
       </div>}
-    </>
+      <Countries countries={countries} />
+    </div>
   );
 }
 
