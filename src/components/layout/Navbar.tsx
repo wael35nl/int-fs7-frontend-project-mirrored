@@ -24,15 +24,15 @@ const Navbar = () => {
             !showList ? setShowList(!showList) : setShowList(!showList);
           }}/>
           {showList &&
-            <div className={style.navbar__drop_list}>
-              <p onClick={() => {dispatch(getAllCountries()); setShowList(!showList)}}>All</p>
-              <p onClick={() => handleRegionSearch('Americas')}>America</p>
-              <p onClick={() => handleRegionSearch('Europe')}>Europe</p>
-              <p onClick={() => handleRegionSearch('Asia')}>Asia</p>
-              <p onClick={() => handleRegionSearch('Africa')}>Africa</p>
-              <p onClick={() => handleRegionSearch('Oceania')}>Oceania</p>
-              <p onClick={() => handleRegionSearch('Antarctic')}>Antarctica</p>
-            </div>
+            <ul className={style.navbar__drop_list}>
+              <li onClick={() => {dispatch(getAllCountries()); setShowList(!showList)}}>All</li>
+              <li onClick={() => handleRegionSearch('Americas')}>America</li>
+              <li onClick={() => handleRegionSearch('Europe')}>Europe</li>
+              <li onClick={() => handleRegionSearch('Asia')}>Asia</li>
+              <li onClick={() => handleRegionSearch('Africa')}>Africa</li>
+              <li onClick={() => handleRegionSearch('Oceania')}>Oceania</li>
+              <li onClick={() => handleRegionSearch('Antarctic')}>Antarctica</li>
+            </ul>
           }
         <h4>Regions</h4>
       </div>

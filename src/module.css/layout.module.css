@@ -43,7 +43,7 @@
     gap: 1rem;
 }
 
-.navbar__drop_list p {
+.navbar__drop_list li {
     padding: 0.3em;
     border-bottom: 1px solid black;
     border-radius: 10px;
@@ -51,7 +51,7 @@
     cursor: pointer;
 }
 
-.navbar__drop_list p:hover {
+.navbar__drop_list li:hover {
     background-color: gray;
     color: gold;
 }

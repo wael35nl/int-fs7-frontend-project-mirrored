@@ -64,7 +64,7 @@ export const countriesSlice = createSlice({
         builder.addCase(getAllCountries.rejected, (state, action) => {
             state.isLoading = false;
             state.isError = true;
-            state.message = action.error.message || 'Error..';
+            state.message = action.error.message ? action.error.message = 'Something went wrong!!' : 'Error..';
             state.countries = [];
         });
     }
