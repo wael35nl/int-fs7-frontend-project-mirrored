@@ -8,7 +8,7 @@ import Countries from '../countries/Countries';
 import style from '../../module.css/countries.module.css';
 
 const CountriesPage = () => {
-  const {countries, countrySearch, isLoading, isError, message} = useAppSelector(selectCountries);
+  const {countries, regionSearch, countrySearch, isLoading, isError, message} = useAppSelector(selectCountries);
   const dispatch = useAppDispatch();
 
   const [countryName, setCountryName] = useState('');
@@ -30,9 +30,9 @@ const CountriesPage = () => {
         <>
           <div className={style.search}>
           <input type='text' name='name' placeholder="search country..." value={countryName} onChange={(e) => setCountryName(e.target.value)} autoComplete="off" />
-          <p>Found: {countryName !== '' ? countrySearch.length : countries.length}</p>
+          <p>Found: {countryName !== '' ? countrySearch.length : regionSearch.length !== 0 ? regionSearch.length : countries.length}</p>
           </div>
-          <Countries countries={countryName !== '' ? countrySearch : countries} />
+          <Countries countries={countryName !== '' ? countrySearch : regionSearch.length !== 0 ? regionSearch : countries} />
         </>
       }
     </div>

@@ -21,10 +21,14 @@ export const countriesSlice = createSlice({
     initialState,
     reducers: {
         region: (state, action) => {
-            state.countries = state.countries.filter(country => country.region === action.payload);
+            state.regionSearch = state.countries.filter(country => country.region === action.payload);
         },
         search: (state, action) => {
-            state.countrySearch = state.countries.filter(country => country.name.common.toLowerCase().includes(action.payload.toLowerCase()));
+            if (state.regionSearch.length > 0) {
+                state.countrySearch = state.regionSearch.filter(country => country.name.common.toLowerCase().includes(action.payload.toLowerCase()));
+            } else {
+                state.countrySearch = state.countries.filter(country => country.name.common.toLowerCase().includes(action.payload.toLowerCase()));
+            }
         },
         favorite: (state, action) => {
             state.isFavorite = false;
@@ -61,6 +65,7 @@ export const countriesSlice = createSlice({
         });
         builder.addCase(getAllCountries.fulfilled, (state, action) => {
             state.isLoading = false;
+            state.regionSearch = [];
             state.countries = action.payload;
         });
         builder.addCase(getAllCountries.rejected, (state, action) => {
