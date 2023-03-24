@@ -6,6 +6,8 @@ import { CountriesState } from '../../types/Countries';
 
 const initialState: CountriesState = {
     countries: [],
+    regionSearch: [],
+    countrySearch: [],
     favoriteCountries: [],
     favorites: [],
     isFavorite: false,
@@ -22,7 +24,7 @@ export const countriesSlice = createSlice({
             state.countries = state.countries.filter(country => country.region === action.payload);
         },
         search: (state, action) => {
-            state.countries = state.countries.filter(country => country.name.common.toLowerCase().includes(action.payload.toLowerCase()));
+            state.countrySearch = state.countries.filter(country => country.name.common.toLowerCase().includes(action.payload.toLowerCase()));
         },
         favorite: (state, action) => {
             state.isFavorite = false;

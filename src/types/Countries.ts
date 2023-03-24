@@ -193,6 +193,8 @@ export interface AedT {
 
 export interface CountriesState {
     countries: CountriesT[];
+    regionSearch: CountriesT[];
+    countrySearch: CountriesT[];
     favoriteCountries: CountriesT[];
     isFavorite: boolean;
     favorites: string[];

@@ -1,7 +1,3 @@
-import {useEffect} from 'react';
-
-import { useAppDispatch } from '../../app/hooks';
-import { getAllCountries } from '../../services';
 import { CountriesT } from '../../types/Countries';
 import Country from './Country';
 
@@ -12,12 +8,6 @@ type CountriesProps = {
   }
 
 const Countries = ({countries}: CountriesProps) => {
-    const dispatch = useAppDispatch();
-
-    useEffect(() => {
-        dispatch(getAllCountries())
-    }, [dispatch]);
-
     return (
         <table className={style.countries__table}>
             <thead>

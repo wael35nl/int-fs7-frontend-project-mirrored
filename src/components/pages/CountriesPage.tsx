@@ -1,24 +1,24 @@
 import {useState, useEffect} from 'react';
 
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
-import { selectCountries, search } from '../../features/countries/countriesSlice';
 import { getAllCountries } from '../../services';
+import { selectCountries, search } from '../../features/countries/countriesSlice';
 import Countries from '../countries/Countries';
 
 import style from '../../module.css/countries.module.css';
 
 const CountriesPage = () => {
-  const {countries, isLoading, isError, message} = useAppSelector(selectCountries);
+  const {countries, countrySearch, isLoading, isError, message} = useAppSelector(selectCountries);
   const dispatch = useAppDispatch();
 
   const [countryName, setCountryName] = useState('');
 
   useEffect(() => {
-    if (countryName !== '') {
-      dispatch(search(countryName));
-    } else {
       dispatch(getAllCountries());
-    }
+  }, [dispatch]);
+
+  useEffect(() => {
+      dispatch(search(countryName));
   }, [countryName, dispatch]);
 
   return (
@@ -30,9 +30,9 @@ const CountriesPage = () => {
         <>
           <div className={style.search}>
           <input type='text' name='name' placeholder="search country..." value={countryName} onChange={(e) => setCountryName(e.target.value)} autoComplete="off" />
-          <p>Found: {countries.length}</p>
+          <p>Found: {countryName !== '' ? countrySearch.length : countries.length}</p>
           </div>
-          <Countries countries={countries} />
+          <Countries countries={countryName !== '' ? countrySearch : countries} />
         </>
       }
     </div>
