@@ -4,7 +4,6 @@ import { FaBars, FaHome, FaGlobeAmericas, FaHeart, FaToggleOn } from 'react-icon
 
 import { useAppDispatch } from '../../app/hooks';
 import { region } from '../../features/countries/countriesSlice';
-import { getAllCountries } from '../../services';
 
 import style from '../../module.css/layout.module.css';
 
@@ -25,7 +24,7 @@ const Navbar = () => {
           }}/>
           {showList &&
             <ul className={style.navbar__drop_list}>
-              <li onClick={() => {dispatch(getAllCountries()); setShowList(!showList)}}>All</li>
+              <li onClick={() => handleRegionSearch('All')}>All</li>
               <li onClick={() => handleRegionSearch('Americas')}>America</li>
               <li onClick={() => handleRegionSearch('Europe')}>Europe</li>
               <li onClick={() => handleRegionSearch('Asia')}>Asia</li>

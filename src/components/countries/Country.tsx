@@ -1,10 +1,10 @@
-import { v4 as uuidv4} from 'uuid';
 import { Link } from 'react-router-dom';
 import { FaHeart, FaAngleRight } from 'react-icons/fa';
+import { v4 as uuidv4} from 'uuid';
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { CountriesT } from '../../types/Countries';
-import { favorite, setFavorites, selectCountries } from '../../features/countries/countriesSlice';
+import { favorite, selectCountries } from '../../features/countries/countriesSlice';
 
 import style from '../../module.css/countries.module.css';
 
@@ -13,13 +13,9 @@ type CountryProps = {
 }
 
 const Country = ({countries}: CountryProps) => {
-  const {favorites} = useAppSelector(selectCountries);
+  const {favoriteCountries} = useAppSelector(selectCountries);
   const dispatch = useAppDispatch();
 
-  const handleFavorite = (name: string) => {
-    dispatch(setFavorites(name))
-    dispatch(favorite(name));
-  }
   const country = countries.map((country, index) =>
     {
       const name = country.name.common;
@@ -39,7 +35,7 @@ const Country = ({countries}: CountryProps) => {
                   }
                 </ul>
             </td>
-            <td onClick={() => {handleFavorite(name)}}><FaHeart className={favorites.includes(name) ? style.is__favorite : style.not__favorite}/></td>
+            <td onClick={() => {dispatch(favorite(name))}}><FaHeart className={favoriteCountries.includes(country) ? style.is__favorite : style.not__favorite}/></td>
             <td><Link to={name} state={country}><FaAngleRight /></Link></td>
         </tr>
   </tbody>

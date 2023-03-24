@@ -14,8 +14,10 @@ const CountriesPage = () => {
   const [countryName, setCountryName] = useState('');
 
   useEffect(() => {
+    if (countries.length === 0) {
       dispatch(getAllCountries());
-  }, [dispatch]);
+    }
+  }, [countries.length, dispatch]);
 
   useEffect(() => {
       dispatch(search(countryName));

@@ -197,7 +197,6 @@ export interface CountriesState {
     countrySearch: CountriesT[];
     favoriteCountries: CountriesT[];
     isFavorite: boolean;
-    favorites: string[];
     isLoading: boolean;
     isError: boolean;
     message: string;

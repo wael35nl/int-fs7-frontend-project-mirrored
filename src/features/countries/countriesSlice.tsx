@@ -9,7 +9,6 @@ const initialState: CountriesState = {
     regionSearch: [],
     countrySearch: [],
     favoriteCountries: [],
-    favorites: [],
     isFavorite: false,
     isLoading: false,
     isError: false,
@@ -23,6 +22,7 @@ export const countriesSlice = createSlice({
         region: (state, action) => {
             state.regionSearch = state.countries.filter(country => country.region === action.payload);
         },
+
         search: (state, action) => {
             if (state.regionSearch.length > 0) {
                 state.countrySearch = state.regionSearch.filter(country => country.name.common.toLowerCase().includes(action.payload.toLowerCase()));
@@ -30,6 +30,7 @@ export const countriesSlice = createSlice({
                 state.countrySearch = state.countries.filter(country => country.name.common.toLowerCase().includes(action.payload.toLowerCase()));
             }
         },
+
         favorite: (state, action) => {
             state.isFavorite = false;
             state.favoriteCountries.forEach(country => {
@@ -49,15 +50,8 @@ export const countriesSlice = createSlice({
                 }
             });
         },
-        setFavorites : (state, action) => {
-            if (!state.favorites.includes(action.payload)) {
-                state.favorites.push(action.payload);
-              }
-              else {
-                state.favorites = state.favorites.filter(name => name !== action.payload);
-              }
-        }
     },
+
     extraReducers: builder => {
         builder.addCase(getAllCountries.pending, (state) => {
             state.isLoading = true;
@@ -65,7 +59,6 @@ export const countriesSlice = createSlice({
         });
         builder.addCase(getAllCountries.fulfilled, (state, action) => {
             state.isLoading = false;
-            state.regionSearch = [];
             state.countries = action.payload;
         });
         builder.addCase(getAllCountries.rejected, (state, action) => {
@@ -77,6 +70,6 @@ export const countriesSlice = createSlice({
     }
 });
 
-export const {region, search, favorite, setFavorites} = countriesSlice.actions;
+export const {region, search, favorite} = countriesSlice.actions;
 export const selectCountries = (state: RootState) => state.countriesR;
 export default countriesSlice.reducer;

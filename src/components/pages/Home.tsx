@@ -3,12 +3,12 @@ import { maps } from '../../data';
 
 const Home = () => {
 
-  const [map, setMap] = useState<number>(0);
+  const [map, setMap] = useState(0);
   
   useEffect(() => {
     setInterval(() => {
       setMap(Math.floor(Math.random() * maps.length));
-  }, 10000);
+    }, 10000);
   }, [map]);
 
   return (
