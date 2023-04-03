@@ -2,12 +2,14 @@ import {useState} from 'react';
 import { NavLink } from "react-router-dom";
 import { FaBars, FaHome, FaGlobeAmericas, FaHeart, FaToggleOn } from 'react-icons/fa';
 
-import { useAppDispatch } from '../../app/hooks';
-import { region } from '../../features/countries/countriesSlice';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { region, selectCountries } from '../../features/countries/countriesSlice';
 
 import style from '../../module.css/layout.module.css';
 
 const Navbar = () => {
+  const {favoriteCountries} = useAppSelector(selectCountries);
+
   const dispatch = useAppDispatch();
   const [showList, setShowList] = useState(false);
 
@@ -38,7 +40,7 @@ const Navbar = () => {
       <ul className={style.nav__links}>
         <li><NavLink to='/'><FaHome/></NavLink></li>
         <li><NavLink to='/CountriesPage'><FaGlobeAmericas /></NavLink></li>
-        <li><NavLink to='/favorite'><FaHeart /></NavLink></li>
+        <li><NavLink to='/favorite'><FaHeart /><sup className={style.sub}>{favoriteCountries.length}</sup></NavLink></li>
         <li><NavLink to='/'><FaToggleOn /></NavLink></li>
       </ul>
     </nav>

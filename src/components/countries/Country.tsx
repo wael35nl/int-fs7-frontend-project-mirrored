@@ -35,7 +35,7 @@ const Country = ({countries}: CountryProps) => {
                   }
                 </ul>
             </td>
-            <td onClick={() => {dispatch(favorite(name))}}><FaHeart className={favoriteCountries.includes(country) ? style.is__favorite : style.not__favorite}/></td>
+            <td><FaHeart onClick={() => {dispatch(favorite(name))}} className={favoriteCountries.includes(country) ? style.is__favorite : style.not__favorite}/></td>
             <td><Link to={name} state={country}><FaAngleRight /></Link></td>
         </tr>
   </tbody>

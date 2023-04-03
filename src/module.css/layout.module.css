@@ -62,3 +62,9 @@
     justify-content: flex-end;
     gap: 2.5rem;
 }
+
+.sub {
+    color: rgb(255, 0, 183);
+    font-size: 1rem;
+    vertical-align: top;
+}
